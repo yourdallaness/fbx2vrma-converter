@@ -2,6 +2,8 @@
 
 FBXアニメーションファイルをVRMA（VRMアニメーション）形式に変換し、Webアプリケーションでのみウムアニメーションで使用できるようにします。
 
+[English README](README.md) | 日本語 README
+
 ## 🎯 機能
 
 - **🎬 FBX to VRMA変換**: FBXアニメーションをVRMA形式に変換
