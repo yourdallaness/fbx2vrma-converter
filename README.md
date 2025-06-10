@@ -1,6 +1,7 @@
 # FBX to VRMA Converter
 
 Convert FBX animation files to VRMA (VRM Animation) format for use with VRM models in web applications.
+English README | [日本語 README](README-jp.md)
 
 ## 🎯 Features
 
@@ -178,3 +179,5 @@ If you encounter any issues or have questions:
 3. Include sample files if possible
 
 ---
+
+**Mainly created using Claude Code**
