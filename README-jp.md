@@ -25,7 +25,7 @@ FBXアニメーションファイルをVRMA（VRMアニメーション）形式�
 #### 1. リポジトリのクローン
 
 ```bash
-git clone https://github.com/yourusername/fbx2vrma-converter.git
+git clone https://github.com/TK-256/fbx2vrma-converter.git
 cd fbx2vrma-converter
 npm install
 ```
