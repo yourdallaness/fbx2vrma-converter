@@ -2,8 +2,6 @@
 
 FBXアニメーションファイルをVRMA（VRMアニメーション）形式に変換し、Webアプリケーションでのみウムアニメーションで使用できるようにします。
 
-[English README](README.md) | 日本語 README
-
 ## 🎯 機能
 
 - **🎬 FBX to VRMA変換**: FBXアニメーションをVRMA形式に変換
@@ -25,34 +23,41 @@ FBXアニメーションファイルをVRMA（VRMアニメーション）形式�
 #### 1. リポジトリのクローン
 
 ```bash
-git clone https://github.com/TK-256/fbx2vrma-converter.git
+git clone https://github.com/yourusername/fbx2vrma-converter.git
 cd fbx2vrma-converter
 npm install
+./setup.sh  # FBX2glTFバイナリをダウンロード
 ```
 
 #### 2. FBX2glTFバイナリのダウンロード
 
-お使いのプラットフォーム用のFBX2glTFバイナリをダウンロードする必要があります：
+**方法1: 自動セットアップ（推奨）**
 
-**macOS用:**
+セットアップスクリプトを実行して、お使いのプラットフォーム用の正しいバイナリを自動ダウンロード：
+
 ```bash
-# macOSバイナリをダウンロード
-curl -L -o FBX2glTF-darwin-x64 https://github.com/facebookincubator/FBX2glTF/releases/latest/download/FBX2glTF-darwin-x64
-chmod +x FBX2glTF-darwin-x64
+# macOS/Linux
+./setup.sh
+
+# Windows（コマンドプロンプト）
+setup.bat
+
+# Windows（PowerShell）
+.\setup.bat
 ```
 
-**Windows用:**
-```bash
-# Windowsバイナリをダウンロード
-curl -L -o FBX2glTF-windows-x64.exe https://github.com/facebookincubator/FBX2glTF/releases/latest/download/FBX2glTF-windows-x64.exe
-```
+**方法2: 手動ダウンロード**
 
-**Linux用:**
-```bash
-# Linuxバイナリをダウンロード
-curl -L -o FBX2glTF-linux-x64 https://github.com/facebookincubator/FBX2glTF/releases/latest/download/FBX2glTF-linux-x64
-chmod +x FBX2glTF-linux-x64
-```
+セットアップスクリプトが失敗した場合は、手動でバイナリをダウンロード：
+
+1. [FBX2glTF Releases](https://github.com/facebookincubator/FBX2glTF/releases)にアクセス
+2. 最新リリース（v0.9.7）をクリック
+3. 適切なバイナリをダウンロード：
+   - macOS: `FBX2glTF-darwin-x64`
+   - Windows: `FBX2glTF-windows-x64.exe`
+   - Linux: `FBX2glTF-linux-x64`
+4. プロジェクトディレクトリにバイナリを配置
+5. 実行権限を付与（macOS/Linux）: `chmod +x FBX2glTF-darwin-x64`
 
 #### 3. インストールの確認
 
@@ -173,5 +178,3 @@ fbx2vrma/
 3. 可能であればサンプルファイルを含める
 
 ---
-
-**主にClaude Codeで作成されました**

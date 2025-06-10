@@ -2,8 +2,6 @@
 
 Convert FBX animation files to VRMA (VRM Animation) format for use with VRM models in web applications.
 
-English README | [日本語 README](README-jp.md)
-
 ## 🎯 Features
 
 - **🎬 FBX to VRMA Conversion**: Convert FBX animations to VRMA format
@@ -25,34 +23,41 @@ English README | [日本語 README](README-jp.md)
 #### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/TK-256/fbx2vrma-converter.git
+git clone https://github.com/yourusername/fbx2vrma-converter.git
 cd fbx2vrma-converter
 npm install
+./setup.sh  # Download FBX2glTF binary
 ```
 
 #### 2. Download FBX2glTF Binary
 
-You need to download the FBX2glTF binary for your platform:
+**Method 1: Automatic Setup (Recommended)**
 
-**For macOS:**
+Run the setup script to automatically download the correct binary for your platform:
+
 ```bash
-# Download macOS binary
-curl -L -o FBX2glTF-darwin-x64 https://github.com/facebookincubator/FBX2glTF/releases/latest/download/FBX2glTF-darwin-x64
-chmod +x FBX2glTF-darwin-x64
+# macOS/Linux
+./setup.sh
+
+# Windows (Command Prompt)
+setup.bat
+
+# Windows (PowerShell)
+.\setup.bat
 ```
 
-**For Windows:**
-```bash
-# Download Windows binary
-curl -L -o FBX2glTF-windows-x64.exe https://github.com/facebookincubator/FBX2glTF/releases/latest/download/FBX2glTF-windows-x64.exe
-```
+**Method 2: Manual Download**
 
-**For Linux:**
-```bash
-# Download Linux binary
-curl -L -o FBX2glTF-linux-x64 https://github.com/facebookincubator/FBX2glTF/releases/latest/download/FBX2glTF-linux-x64
-chmod +x FBX2glTF-linux-x64
-```
+If the setup script fails, manually download the binary:
+
+1. Go to [FBX2glTF Releases](https://github.com/facebookincubator/FBX2glTF/releases)
+2. Click on the latest release (v0.9.7)
+3. Download the appropriate binary:
+   - macOS: `FBX2glTF-darwin-x64`
+   - Windows: `FBX2glTF-windows-x64.exe`
+   - Linux: `FBX2glTF-linux-x64`
+4. Place the binary in your project directory
+5. Make it executable (macOS/Linux): `chmod +x FBX2glTF-darwin-x64`
 
 #### 3. Verify Installation
 
@@ -173,5 +178,3 @@ If you encounter any issues or have questions:
 3. Include sample files if possible
 
 ---
-
-**Mainly created using Claude Code**
