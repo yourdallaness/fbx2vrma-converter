@@ -173,3 +173,5 @@ If you encounter any issues or have questions:
 3. Include sample files if possible
 
 ---
+
+**Mainly created using Claude Code**
