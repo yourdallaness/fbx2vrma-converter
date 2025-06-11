@@ -28,16 +28,16 @@
     "webgl",
     "threejs"
   ],
-  "author": "Your Name",
+  "author": "TK-256",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/fbx2vrma-converter.git"
+    "url": "https://github.com/TK-256/fbx2vrma-converter.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/fbx2vrma-converter/issues"
+    "url": "https://github.com/TK-256/fbx2vrma-converter/issues"
   },
-  "homepage": "https://github.com/yourusername/fbx2vrma-converter#readme",
+  "homepage": "https://github.com/TK-256/fbx2vrma-converter#readme",
   "engines": {
     "node": ">=18.0.0"
   },
