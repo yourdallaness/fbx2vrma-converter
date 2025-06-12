@@ -25,7 +25,7 @@ English README | [日本語 README](README-jp.md)
 #### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/fbx2vrma-converter.git
+git clone https://github.com/tk256ailab/fbx2vrma-converter.git
 cd fbx2vrma-converter
 npm install
 ./setup.sh  # Download FBX2glTF binary
