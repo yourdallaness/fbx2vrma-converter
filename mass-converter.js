@@ -26,7 +26,7 @@ async function massConvert() {
       const outputFileName = `${path.basename(fbxFile, '.fbx')}.vrma`;
       const outputPath = path.join(outputDir, outputFileName);
 
-      await converter.convert(inputPath, outputPath, fbx2gltfPath, '30', true);
+      await converter.convert(inputPath, outputPath, fbx2gltfPath, '30');
     }
 
     console.log('All conversions completed.');

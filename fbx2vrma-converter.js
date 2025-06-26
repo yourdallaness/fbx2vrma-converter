@@ -99,12 +99,10 @@ class FBXToVRMAConverterFixed {
       .requiredOption('-o, --output <path>', 'Output VRMA file path')
       .option('--fbx2gltf <path>', 'Path to FBX2glTF binary', './FBX2glTF-darwin-x64')
       .option('--framerate <fps>', 'Animation framerate', '30')
-      .option('--trim', 'Trim the first and last frame of the animation', false)
       .parse();
   }
 
-  async convert(inputPath, outputPath, fbx2gltfPath, framerate, trim = false) {
-    console.log('TRIM?', trim);
+  async convert(inputPath, outputPath, fbx2gltfPath, framerate) {
     try {
       console.log(`Converting ${inputPath} to ${outputPath} with improved timing...`);
 
@@ -116,9 +114,6 @@ class FBXToVRMAConverterFixed {
       let gltfData = await fs.readJson(tempGltfPath);
 
       // Step 3: アニメーション時間を詳細分析して修正
-      if (trim) {
-        gltfData = this.trimAnimation(gltfData);
-      }
       const enhancedGltfData = this.enhanceAnimationTiming(gltfData, parseInt(framerate));
 
       // Step 4: バイナリファイルを埋め込み
@@ -245,73 +240,6 @@ class FBXToVRMAConverterFixed {
       calculatedAt: new Date().toISOString()
     };
 
-    return gltfData;
-  }
-
-  trimAnimation(gltfData) {
-    console.log('Trimming first and last frames from animation...');
-
-    if (!gltfData.animations || gltfData.animations.length === 0) {
-      console.log('No animations found to trim.');
-      return gltfData;
-    }
-
-    gltfData.animations.forEach((animation) => {
-      if (animation.samplers && gltfData.accessors) {
-        animation.samplers.forEach((sampler) => {
-          const inputAccessorIndex = sampler.input;
-          const outputAccessorIndex = sampler.output;
-
-          const timeAccessor = gltfData.accessors[inputAccessorIndex];
-          const valueAccessor = gltfData.accessors[outputAccessorIndex];
-
-          if (timeAccessor && valueAccessor) {
-            // Assuming SCALAR type for time and VEC3/VEC4 for values
-            const originalTimeCount = timeAccessor.count;
-            const originalValueCount = valueAccessor.count;
-
-            if (originalTimeCount < 3) {
-              console.warn(
-                'Animation has too few frames to trim (less than 3). Skipping trimming.'
-              );
-              return;
-            }
-
-            // Adjust time accessor
-            const newTimeCount = originalTimeCount - 2;
-            const newTimeBufferView = timeAccessor.bufferView;
-            const newTimeByteOffset = timeAccessor.byteOffset + Float32Array.BYTES_PER_ELEMENT; // Skip first frame
-
-            // Update min/max for time accessor (simple approach, might need more precise calculation)
-            // For simplicity, we'll just adjust the byteOffset and count, min/max might need re-calculation
-            // based on the actual values in the buffer, but for trimming, this is often sufficient.
-            // A more robust solution would read the buffer and re-calculate min/max.
-            timeAccessor.count = newTimeCount;
-            timeAccessor.byteOffset = newTimeByteOffset;
-            // Re-calculate min/max if necessary, for now, we'll assume it's handled by the new byteOffset and count
-            // timeAccessor.min = [newMinTime];
-            // timeAccessor.max = [newMaxTime];
-
-            // Adjust value accessor
-            const componentTypeSize =
-              gltfData.bufferViews[valueAccessor.bufferView].byteStride || 4; // Assuming float
-            const numComponents = { SCALAR: 1, VEC2: 2, VEC3: 3, VEC4: 4, MAT4: 16 }[
-              valueAccessor.type
-            ];
-            const newValuesCount = originalValueCount - 2;
-            const newValueBufferView = valueAccessor.bufferView;
-            const newValueByteOffset = valueAccessor.byteOffset + componentTypeSize * numComponents; // Skip first frame
-
-            valueAccessor.count = newValuesCount;
-            valueAccessor.byteOffset = newValueByteOffset;
-
-            console.log(
-              `Trimmed animation: ${animation.name}. Original frames: ${originalTimeCount}, New frames: ${newTimeCount}`
-            );
-          }
-        });
-      }
-    });
     return gltfData;
   }
 
@@ -453,8 +381,7 @@ class FBXToVRMAConverterFixed {
       options.input,
       options.output,
       options.fbx2gltf,
-      options.framerate,
-      options.trim
+      options.framerate
     );
     process.exit(success ? 0 : 1);
   }
