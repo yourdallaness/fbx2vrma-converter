@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "node fbx2vrma-converter.js",
+    "mass-convert": "node mass-converter.js",
     "NOsetup": "./setup.sh",
     "NOpostinstall": "./setup.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
